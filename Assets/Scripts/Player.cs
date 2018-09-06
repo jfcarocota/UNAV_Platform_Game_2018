@@ -7,10 +7,11 @@ public class Player : Character2D
     protected override void Jump()
     {
         base.Jump();
+        anim.SetBool("Grounding", grounding);
+
         if (jumping)
         {
             anim.SetTrigger("Jumping");
-            anim.SetBool("Grounding", grounding);
         }
     }
 
