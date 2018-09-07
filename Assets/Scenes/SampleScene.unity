@@ -404,7 +404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0.3
   jumpForce: 7
-  speedLimit: 7
+  speedLimit: 5
   groundSystem:
     rayColor: {r: 0, g: 0.086274624, b: 1, a: 1}
     rayLenght: 0.2

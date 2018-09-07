@@ -48,7 +48,10 @@ public abstract class Character2D : MonoBehaviour
     {
         grounding = groundSystem.CheckGround(transform);
 
-        rb2D.AddForce(Vector2.right  * moveSpeed * ComponentX, ForceMode2D.Impulse);
+        rb2D.AddForce(grounding & ComponentX != 0f ? 
+            (Vector2)Vector3.ProjectOnPlane(Vector2.right * ComponentX * moveSpeed, grounding.normal.normalized)
+            :  Vector2.right  * moveSpeed * ComponentX, ForceMode2D.Impulse);
+
         clampVel = Vector2.ClampMagnitude(rb2D.velocity, speedLimit);
 
         rb2D.velocity = new Vector2(
@@ -80,6 +83,11 @@ public abstract class Character2D : MonoBehaviour
         groundSystem.DrawRay(transform);
         Gizmos.color = Color.red;
         Gizmos.DrawRay((Vector2)transform.position + groundSystem.StartPosition, grounding.normal * 2f);
+        Gizmos.color = Color.cyan;
+        if (ComponentX != 0f)
+        {
+            Gizmos.DrawRay((Vector2)transform.position + groundSystem.StartPosition, (Vector2)Vector3.ProjectOnPlane(rb2D.velocity.normalized, grounding.normal) * 2f);
+        }
     }
 
     protected float ComponentX
