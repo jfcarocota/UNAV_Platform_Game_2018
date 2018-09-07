@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameCore.MemorySystem;
 
 public class Player : Character2D
 {
@@ -19,5 +20,10 @@ public class Player : Character2D
     {
         base.Move2D();
         anim.SetFloat("InputX", Mathf.Abs(ComponentX));
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        MemorySystem.Save(new GameData(transform.position.x, transform.position.y), "MyGameSave.data");
     }
 }

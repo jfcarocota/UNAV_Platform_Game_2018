@@ -15,17 +15,27 @@ namespace GameCore
             float rayLenght;
             [SerializeField]
             LayerMask groundLayer;
+            [SerializeField]
+            Vector2 startPosition;
+
+            public Vector2 StartPosition
+            {
+                get
+                {
+                    return startPosition;
+                }
+            }
 
             public RaycastHit2D CheckGround(Transform transform)
             {
                 
-                return Physics2D.Raycast(transform.position, -transform.up, rayLenght, groundLayer);
+                return Physics2D.Raycast((Vector2)transform.position + startPosition, -transform.up, rayLenght, groundLayer);
             }
 
             public void DrawRay(Transform transform)
             {
                 Gizmos.color = rayColor;
-                Gizmos.DrawRay(transform.position, -transform.up * rayLenght);
+                Gizmos.DrawRay((Vector2)transform.position + startPosition, -transform.up * rayLenght);
             }
         }
     }
