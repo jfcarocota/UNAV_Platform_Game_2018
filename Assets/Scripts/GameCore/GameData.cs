@@ -17,4 +17,12 @@ public class GameData
         this.posX = posX;
         this.posY = posY;
     }
+
+    public Vector2 PlayerPosition
+    {
+        get
+        {
+            return new Vector2(posX, posY);
+        }
+    }
 }

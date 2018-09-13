@@ -5,6 +5,14 @@ using GameCore.MemorySystem;
 
 public class Player : Character2D
 {
+    GameData gd;
+
+    private void Start()
+    {
+        gd = MemorySystem.Load;
+        transform.position = gd.PlayerPosition;
+    }
+
     protected override void Jump()
     {
         base.Jump();
@@ -24,6 +32,6 @@ public class Player : Character2D
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        MemorySystem.Save(new GameData(transform.position.x, transform.position.y), "MyGameSave.data");
+        MemorySystem.Save(new GameData(transform.position.x, transform.position.y));
     }
 }
