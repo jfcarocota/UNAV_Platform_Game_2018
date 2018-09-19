@@ -26,6 +26,9 @@ public abstract class Character2D : MonoBehaviour
     protected RaycastHit2D grounding;
     protected bool jumping;
 
+    [SerializeField]
+    TouchJoystick tchJoystick;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -94,7 +97,11 @@ public abstract class Character2D : MonoBehaviour
     {
         get
         {
+#if UNITY_STANDALONE
             return ControlSystem.Axis.x;
+#elif UNITY_ANDROID
+            return tchJoystick.Tch_axis.x;
+#endif
         }
     }
 

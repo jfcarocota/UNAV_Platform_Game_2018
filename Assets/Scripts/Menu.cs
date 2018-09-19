@@ -15,6 +15,7 @@ public class Menu : MonoBehaviour
     private void Awake()
     {
         btn_loadGame.onClick.AddListener(delegate{OnClickLoadGame(sceneIndex);});
+        //btn_loadGame.onClick.AddListener(OnClickLoadGame);
     }
 
     void OnClickLoadGame()
